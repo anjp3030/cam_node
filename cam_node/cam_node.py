@@ -41,7 +41,7 @@ class CameraPublisher(Node):
         # OpenCV 이미지를 ROS2 Image 메시지로 변환 (인코딩은 필요에 따라 조정)
         image_msg = self.bridge.cv2_to_imgmsg(frame, encoding='bgr8')
         self.publisher_.publish(image_msg)
-        self.get_logger().info("이미지 프레임을 publish 했습니다.")
+        # self.get_logger().info("이미지 프레임을 publish 했습니다.")
 
 def main(args=None):
     rclpy.init(args=args)

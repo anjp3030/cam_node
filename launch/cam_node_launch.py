@@ -12,7 +12,7 @@ def generate_launch_description():
             name='cam_node_camera1',
             output='screen',
             parameters=[{
-                'device_path': '/dev/v4l/by-id/usb-HD_Camera_HD_Camera-video-index0',
+                'device_path': '/dev/uvc-hd',
                 'camera_name': 'uv570'
             }]
         ),
@@ -23,7 +23,7 @@ def generate_launch_description():
             name='cam_node_camera2',
             output='screen',
             parameters=[{
-                'device_path': '/dev/v4l/by-id/usb-Orbbec_Orbbec_Femto_Bolt_3D_Camera_CL8384200Y6-video-index0',
+                'device_path': '/dev/uvc-bolt',
                 'camera_name': 'bolt'
             }]
         ),
@@ -34,7 +34,7 @@ def generate_launch_description():
             name='cam_node_camera3',
             output='screen',
             parameters=[{
-                'device_path': '/dev/v4l/by-path/pci-0000:00:14.0-usb-0:2:1.3-video-index0',  # 실제 사용 환경에 맞게 수정하세요.
+                'device_path': '/dev/uvc-d435',
                 'camera_name': 'd435'
             }]
         )
