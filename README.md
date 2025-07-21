@@ -48,6 +48,21 @@ ros2 run cam_node cam_node --ros-args -p device_path:=/dev/uvc-hd -p camera_name
 ros2 launch cam_node cam_node_launch.py
 ```
 
+#### path 예시 
+'''
+ # 세 번째 카메라 노드 (예: Volt 등 다른 카메라)
+        Node(
+            package='cam_node',
+            executable='cam_node',
+            name='cam_node_camera3',
+            output='screen',
+            parameters=[{
+                'device_path': '/dev/uvc-d435', #device path udev rule 로 uvc-d435로 설정
+                'camera_name': 'd435'
+            }]
+        )
+'''
+
 - 각 카메라별 장치 경로와 이름은 launch 파일에서 지정합니다.
 
 ### 3. 토픽 예시
