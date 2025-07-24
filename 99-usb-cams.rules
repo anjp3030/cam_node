@@ -1,0 +1,15 @@
+# HD Camera RGB stream — index 0 (e.g., /dev/video0)
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="5d6e", ATTRS{idProduct}=="0106", ATTR{index}=="0", SYMLINK+="uvc-hd"
+
+# RealSense RGB stream — index 0
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="8086", ATTRS{idProduct}=="0b3a",, ENV{ID_USB_INTERFACE_NUM}=="03", ATTR{index}=="0",  ENV{ID_V4L_CAPABILITIES}=="*:capture:*" , SYMLINK+="uvc-d435"
+
+# Orbbec RGB stream — index 0 (with serial)
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="2bc5", ATTRS{idProduct}=="066b",  ENV{ID_USB_INTERFACE_NUM}=="00", ENV{ID_V4L_CAPABILITIES}=="*:capture:*", SYMLINK+="uvc-bolt"
+
+
+
+
+
+
+
