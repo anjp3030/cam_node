@@ -20,7 +20,8 @@
 # ROS2 패키지 빌드 환경에서
 git clone https://github.com/anjp3030/cam_node.git
 cd cam_node
-rosdep install --from-paths . --ignore-src -r -y
+sudo cp 99-usb-cams.rules /etc/udev/rules.d/99-usb-cams.rules
+udevadm control --reload-rules && udevadm trigger
 colcon build
 ```
 
@@ -50,14 +51,14 @@ ros2 launch cam_node cam_node_launch.py
 
 #### path 예시 
 '''
- # 세 번째 카메라 노드 (예: Volt 등 다른 카메라)
+ # 세 번째 카메라 노드 (예: realsense d435의 경우 udev rule 로 uvc-d435로 symlink 생성)
         Node(
             package='cam_node',
             executable='cam_node',
             name='cam_node_camera3',
             output='screen',
             parameters=[{
-                'device_path': '/dev/uvc-d435', #device path udev rule 로 uvc-d435로 설정
+                'device_path': '/dev/uvc-d435', #udev rule 로 uvc-d435로 설정
                 'camera_name': 'd435'
             }]
         )
@@ -80,7 +81,7 @@ ros2 launch cam_node cam_node_launch.py
 class CameraPublisher(Node):
     def __init__(self):
         ...
-        self.declare_parameter("device_path", "/dev/v4l/by-id/usb-HD_Camera_HD_Camera-video-index0")
+        self.declare_parameter("device_path", "/dev/v4l/by-id/usb-HD_Camera_HD_Camera-video-index0") # 실제 path device path 사용시 혹은 /dev/videox
         self.declare_parameter("camera_name", "uv570")
         ...
         self.publisher_ = self.create_publisher(Image, publish_topic, 10)
